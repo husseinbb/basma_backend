@@ -8,21 +8,18 @@ use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Illuminate\Support\Facades\Validator;
 
-class LogoutController
+class LogoutController extends Controller
 {
     public function logout(Request $request)
     {
-        //valid credential
         $validator = Validator::make($request->only('token'), [
             'token' => 'required'
         ]);
 
-        //Send failed response if request is not valid
         if ($validator->fails()) {
             return response()->json(['error' => $validator->messages(), 'code' => 422]);
         }
-
-        //Request is validated, do logout        
+       
         try {
             JWTAuth::invalidate($request->token);
 
