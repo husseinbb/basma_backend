@@ -3,7 +3,7 @@
 namespace App\Services\Customers;
 
 use App\Repositories\Users\UserRepo;
-
+use App\Helpers\DateHelper;
 class CustomerService
 {
     private $userRepo;
@@ -29,5 +29,12 @@ class CustomerService
         }
 
         return $this->userRepo->getCustomers($id ?? null, $firstName ?? null, $email ?? null, $pagination ?? null);
+    }
+
+    public function getAverageRegistration($data)
+    {
+        $data['period'] = DateHelper::getPeriod($data['period']);
+        
+        return $this->userRepo->getAverageRegistration($data['period']);
     }
 }

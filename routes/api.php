@@ -26,7 +26,8 @@ Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'authent
 
 
 Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('customers', [App\Http\Controllers\Customers\CustomerController::class, 'getCustomers']);
     Route::get('logout', [App\Http\Controllers\Auth\LogoutController::class, 'logout']);
 
+    Route::get('customers', [App\Http\Controllers\Customers\CustomerController::class, 'getCustomers']);
+    Route::get('customers/average-registered', [App\Http\Controllers\Customers\CustomerController::class, 'getAverageRegistration']);
 });

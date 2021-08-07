@@ -26,4 +26,11 @@ class UserRepo
                 })
                 ->paginate($pagination ?? 40);
     }
+
+    public function getAverageRegistration($period)
+    {
+        return  User::where('type', UserConstants::CUSTOMER)
+                ->where('created_at', '>=', $period)
+                ->count('*');
+    }
 }
