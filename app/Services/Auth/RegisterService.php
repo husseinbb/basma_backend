@@ -2,7 +2,7 @@
 
 namespace App\Services\Auth;
 
-use App\Repositories\Auth\UserRepo;
+use App\Repositories\Users\UserRepo;
 
 class RegisterService
 {
