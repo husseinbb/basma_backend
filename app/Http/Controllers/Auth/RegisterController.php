@@ -22,10 +22,11 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $data = $request->only('name', 'email', 'password', 'type');
+        $data = $request->only('first_name', 'last_name', 'email', 'password', 'type');
 
         $validator = Validator::make($data, [
-            'name' => 'required|string',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
             'email' => 'required|email',
             'password' => 'required|string|min:6|max:50',
             'type' => ['string', Rule::in(UserConstants::TYPES)],
