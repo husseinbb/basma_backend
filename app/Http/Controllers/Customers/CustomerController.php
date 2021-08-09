@@ -24,7 +24,7 @@ class CustomerController extends Controller
     public function getCustomers(Request $request)
     {
         if (!$this->checkIfUserAuthorized()) {
-            return response()->json(['error' => 'Not Authorized', 'code' => 422]);
+            return response()->json(['error' => 'Not Authorized', 'code' => 401]);
         }
 
         $data = $request->only('id', 'first_name', 'email', 'pagination');
@@ -46,7 +46,7 @@ class CustomerController extends Controller
     public function getAverageRegistration(Request $request)
     {
         if (!$this->checkIfUserAuthorized()) {
-            return response()->json(['error' => 'Not Authorized', 'code' => 422]);
+            return response()->json(['error' => 'Not Authorized', 'code' => 401]);
         }
         
         $data = $request->only('period');

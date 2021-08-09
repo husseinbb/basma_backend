@@ -25,7 +25,8 @@ class LogoutController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => 'User has been logged out'
+                'message' => 'User has been logged out',
+                'code' => 200,
             ]);
         } 
         catch (JWTException $exception) {
