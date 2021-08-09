@@ -29,8 +29,10 @@ class UserRepo
 
     public function getAverageRegistration($period)
     {
-        return  User::where('type', UserConstants::CUSTOMER)
+        return  User::selectRaw('date(created_at) as date, count(*) as count')
+                ->where('type', UserConstants::CUSTOMER)
                 ->where('created_at', '>=', $period)
-                ->count('*');
+                ->groupBy('date')
+                ->get();
     }
 }
