@@ -24,6 +24,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('register', [App\Http\Controllers\Auth\RegisterController::class, 'register']);
 Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'authenticate']);
 
+Route::post('verify-recaptcha', [App\Http\Controllers\ThirdParties\ReCaptchaController::class, 'verifyReCaptcha']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {
     Route::get('logout', [App\Http\Controllers\Auth\LogoutController::class, 'logout']);

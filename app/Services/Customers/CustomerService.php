@@ -4,6 +4,7 @@ namespace App\Services\Customers;
 
 use App\Repositories\Users\UserRepo;
 use App\Helpers\DateHelper;
+use Illuminate\Support\Facades\Mail;
 class CustomerService
 {
     private $userRepo;
@@ -36,5 +37,11 @@ class CustomerService
         $data['period'] = DateHelper::getPeriod($data['period']);
         
         return $this->userRepo->getAverageRegistration($data['period']);
+    }
+
+    public function sendTotalRegistrations()
+    {
+        $customersCount = $this->repo->getTotalRegistration();
+        Mail::to($this->repo->adminEmails())->send('Total registration customers are '. $customersCount);
     }
 }
