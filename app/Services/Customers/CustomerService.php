@@ -42,6 +42,6 @@ class CustomerService
     public function sendTotalRegistrations()
     {
         $customersCount = $this->repo->getTotalRegistration();
-        Mail::to($this->repo->adminEmails());
+        Mail::to($this->repo->adminEmails())->send('Total registration customers are '. $customersCount);
     }
 }
