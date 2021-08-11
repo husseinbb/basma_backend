@@ -35,4 +35,14 @@ class UserRepo
                 ->groupBy('date')
                 ->get();
     }
+
+    public function getTotalRegistration()
+    {
+        return  User::where('type', UserConstants::CUSTOMER)->get()->count();
+    }
+
+    public function adminEmails()
+    {
+        return User::where('type', UserConstants::ADMIN)->pluck('email')->toArray();
+    }
 }
